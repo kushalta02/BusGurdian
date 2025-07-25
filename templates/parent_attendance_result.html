@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance Result</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">📋 Student Attendance for {{ today }}</h2>
+
+    {% if student %}
+      <div class="card bg-secondary text-white mx-auto" style="max-width: 500px;">
+        {% if student.photo %}
+          <img src="{{ url_for('static', filename='uploads/' + student.photo) }}" class="card-img-top" alt="{{ student.name }}">
+        {% endif %}
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ student.name }}</h5>
+          <p>🆔 {{ student.student_id or student._id }}</p>
+          <p>🚌 Bus: {{ student.bus_number }}</p>
+          <p>Status: 
+            {% if status == 'Present' %}
+              <span class="badge bg-success">Present</span>
+            {% else %}
+              <span class="badge bg-danger">Absent</span>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    {% else %}
+      <div class="alert alert-warning text-center">⚠️ Student not found with given ID and Name</div>
+    {% endif %}
+  </div>
+</body>
+</html>

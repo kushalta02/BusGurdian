@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "BUS101",
+    "bus_number": "BUS101",
+    "driver_name": "Suresh Kumar",
+    "driver_phone": "9876543210",
+    "route": "Sector 1 → Sector 5",
+    "current_lat": 28.7041,
+    "current_lng": 77.1025
+  },
+  {
+    "_id": "BUS102",
+    "bus_number": "BUS102",
+    "driver_name": "Ravi Mehta",
+    "driver_phone": "9123456780",
+    "route": "Sector 2 → Sector 8",
+    "current_lat": 28.7050,
+    "current_lng": 77.1030
+  },
+  {
+    "_id": "BUS103",
+    "bus_number": "BUS103",
+    "driver_name": "Anita Sharma",
+    "driver_phone": "9988776655",
+    "route": "Sector 3 → Sector 6",
+    "current_lat": 28.7055,
+    "current_lng": 77.1040
+  },
+  {
+    "_id": "BUS104",
+    "bus_number": "BUS104",
+    "driver_name": "Manoj Gupta",
+    "driver_phone": "9112233445",
+    "route": "Sector 4 → Sector 9",
+    "current_lat": 28.7060,
+    "current_lng": 77.1050
+  },
+  {
+    "_id": "BUS105",
+    "bus_number": "BUS105",
+    "driver_name": "Poonam Thakur",
+    "driver_phone": "9090909090",
+    "route": "Sector 5 → Sector 12",
+    "current_lat": 28.7070,
+    "current_lng": 77.1060
+  },
+  {
+    "_id": "BUS106",
+    "bus_number": "BUS106",
+    "driver_name": "Ajay Sinha",
+    "driver_phone": "9345678910",
+    "route": "Sector 6 → Sector 10",
+    "current_lat": 28.7080,
+    "current_lng": 77.1070
+  }
+]

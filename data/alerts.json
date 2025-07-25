@@ -1,0 +1,36 @@
+{ 
+    "docs":[
+  {
+    "_id": "alert001",
+    "bus_number": "BUS101",
+    "alert_type": "Fatigue Detected",
+    "message": "Possible driver fatigue detected at 08:15 AM",
+    "timestamp": "2025-07-19T08:15:00",
+    "status": "Unresolved"
+  },
+  {
+    "_id": "alert002",
+    "bus_number": "BUS102",
+    "alert_type": "Speed Zone Violation",
+    "message": "Bus entered a school zone over the limit.",
+    "timestamp": "2025-07-19T08:30:00",
+    "status": "Resolved"
+  },
+  {
+    "_id": "alert003",
+    "bus_number": "BUS103",
+    "alert_type": "Child Left Behind",
+    "message": "Unattended child detected after bus parked.",
+    "timestamp": "2025-07-19T09:05:00",
+    "status": "Unresolved"
+  },
+  {
+    "_id": "alert004",
+    "bus_number": "BUS104",
+    "alert_type": "Seat Belt Alert",
+    "message": "Seat belt was unfastened during movement.",
+    "timestamp": "2025-07-19T07:50:00",
+    "status": "Resolved"
+  }
+]
+}

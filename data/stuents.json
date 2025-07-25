@@ -1,0 +1,176 @@
+{
+"docs":[
+  {
+    "_id": "Alpha01",
+    "name": "Ritika Verma",
+    "class": "5A",
+    "bus_number": "BUS101",
+    "photo": "ritika.jpg"
+  },
+  {
+    "_id": "Bravo02",
+    "name": "Aman Pandey",
+    "class": "6A",
+    "bus_number": "BUS102",
+    "photo": "aman.jpg"
+  },
+  {
+    "_id": "Charlie03",
+    "name": "Zoya Shaikh",
+    "class": "1A",
+    "bus_number": "BUS103",
+    "photo": "zoya.jpg"
+  },
+  {
+    "_id": "Delta04",
+    "name": "Kabir Mehta",
+    "class": "6C",
+    "bus_number": "BUS101",
+    "photo": "kabir.jpg"
+  },
+  {
+    "_id": "Echo05",
+    "name": "Ananya Singh",
+    "class": "5B",
+    "bus_number": "BUS104",
+    "photo": "ananya.jpg"
+  },
+  {
+    "_id": "Foxtrot06",
+    "name": "Yuvraj Rana",
+    "class": "9C",
+    "bus_number": "BUS102",
+    "photo": "yuvraj.jpg"
+  },
+  {
+    "_id": "Golf07",
+    "name": "Diya Das",
+    "class": "2A",
+    "bus_number": "BUS101",
+    "photo": "diya.jpg"
+  },
+  {
+    "_id": "Hotel08",
+    "name": "Rohit Mittal",
+    "class": "10A",
+    "bus_number": "BUS103",
+    "photo": "rohit.jpg"
+  },
+  {
+    "_id": "India09",
+    "name": "Isha Sharma",
+    "class": "10B",
+    "bus_number": "BUS106",
+    "photo": "isha.jpg"
+  },
+  {
+    "_id": "Juliet10",
+    "name": "Jasmine",
+    "class": "7A",
+    "bus_number": "BUS104",
+    "photo": "jasmine.jpg"
+  },
+  {
+    "_id": "Kilo11",
+    "name": "Sonali",
+    "class": "5B",
+    "bus_number": "BUS103",
+    "photo": "sonali.jpg"
+  },
+  {
+    "_id": "Lima12",
+    "name": "Ritesh Kumar",
+    "class": "4A",
+    "bus_number": "BUS101",
+    "photo": "ritesh.jpg"
+  },
+  {
+    "_id": "Ænkey15",
+    "name": "Anshula Thakur",
+    "class": "4A",
+    "bus_number": "BUS106",
+    "photo": "anshula.jpg"
+  },
+  {
+    "_id": "apu27",
+    "name": "Sameer Sharma",
+    "class": "1A",
+    "bus_number": "BUS106",
+    "photo": "sameer.jpg"
+  },
+  {
+    "_id": "rahulreigns",
+    "name": "Ash Sharma",
+    "class": "10A",
+    "bus_number": "BUS104",
+    "photo": "ash.jpg"
+  },
+  {
+    "_id": "rjack90",
+    "name": "Kanish",
+    "class": "3A",
+    "bus_number": "BUS105",
+    "photo": "kanish.jpg"
+  },
+  {
+    "_id": "ashi480",
+    "name": "Loveleen",
+    "class": "10A",
+    "bus_number": "BUS102",
+    "photo": "loveleen.jpg"
+  },
+  {
+    "_id": "demo40",
+    "name": "Ajam",
+    "class": "3B",
+    "bus_number": "BUS105",
+    "photo": "ajam.jpg"
+  },
+  {
+    "_id": "rao25",
+    "name": "Prativa Rao",
+    "class": "9B",
+    "bus_number": "BUS105",
+    "photo": "prativa.jpg"
+  },
+  {
+    "_id": "gill8A",
+    "name": "Janvi",
+    "class": "10B",
+    "bus_number": "BUS102",
+    "photo": "janvi.jpg"
+  },
+  {
+    "_id": "duttabani",
+    "name": "Bani",
+    "class": "10A",
+    "bus_number": "BUS103",
+    "photo": "bani.jpg"
+  },
+  {
+    "_id": "sainisabi",
+    "name": "Sirat Kaur",
+    "class": "3A",
+    "bus_number": "BUS104",
+    "photo": "sirat.jpg"
+  },
+  {
+    "_id": "sandhu25",
+    "name": "Varun Sandhu",
+    "class": "1B",
+    "bus_number": "BUS105",
+    "photo": "varun.jpg"
+  },
+  {
+    "_id": "arora25",
+    "name": "Kartik Arora",
+    "class": "3A",
+    "bus_number": "BUS106",
+    "photo": "kartik.jpg"
+  }
+
+
+
+
+]
+}

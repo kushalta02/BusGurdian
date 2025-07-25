@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>| ADMIN DASHBOARD |</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap & Animate.css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: url('{{ url_for("static", filename="uploads/admin_bg.png") }}') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar {
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 2rem 1rem;
+      color: white;
+    }
+
+    .sidebar h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .sidebar a {
+      color: #e0e0e0;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      border-radius: 8px;
+      margin: 8px 0;
+      transition: 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .main-content {
+      padding: 3rem;
+      min-height: 100vh;
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .feature-card {
+      padding: 2rem;
+      border-radius: 15px;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.05);
+    }
+
+    .bg-gradient-blue {
+      background: linear-gradient(to right, #2980b9, #6dd5fa);
+    }
+
+    .bg-gradient-green {
+      background: linear-gradient(to right, #11998e, #38ef7d);
+    }
+
+    .bg-gradient-orange {
+      background: linear-gradient(to right, #f7971e, #ffd200);
+    }
+
+    .bg-gradient-red {
+      background: linear-gradient(to right, #e52d27, #b31217);
+    }
+
+    .bg-gradient-purple {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+    }
+
+    .bg-gradient-gray {
+      background: linear-gradient(to right, #3e5151, #decba4);
+    }
+
+    .alert-box {
+      position: relative;
+      z-index: 10;
+      margin-bottom: -2rem;
+    }
+
+    .logout-btn {
+      position: absolute;
+      bottom: 30px;
+      left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ⚠️ Fatigue Alerts -->
+  {% if alerts %}
+    <div class="alert alert-danger text-center animate__animated animate__flash animate__infinite alert-box">
+      ⚠️ <strong>High Fatigue Alert:</strong>
+      {% for alert in alerts %}
+        {{ alert }}{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 col-lg-2 sidebar">
+        <h3>🏫 Alpha School</h3>
+        <a href="/view_complaints">📢 View Complaints</a>
+        <a href="/admin_map">🗺️ Track Buses</a>
+        <a href="/simulate_fatigue">😴 Simulate Fatigue</a>
+        <a href="/view_alerts">🚨 Fatigue Alerts</a>
+        <a href="/view_attendance_bus">🚌 View Attendance by Bus</a>
+        <a href="/upload_face">📸 View Attendance by Face</a>
+        <a href="/manage_buses">🚌 Manage Buses</a>
+        <a href="/logout" class="btn btn-danger mt-5">🚪 Logout</a>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 col-lg-10 main-content">
+        <h2 class="mb-5">Welcome, {{ user.email }}</h2>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="feature-card bg-gradient-blue">
+              📢<br>
+              <a href="/view_complaints" style="text-decoration:none;color:white"> View Complaints</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card bg-gradient-green">
+              🗺️<br>
+              <a href="/admin_map" style="text-decoration:none;color:white"> Track Buses</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card bg-gradient-orange text-dark">
+              😴<br>
+              <a href="/simulate_fatigue" style="text-decoration:none;color:black"> Simulate Fatigue</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card bg-gradient-red">
+              🚨<br>
+              <a href="/view_alerts" style="text-decoration:none;color:white"> Fatigue Alerts</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card bg-gradient-purple">
+              📋<br>
+              <a href="/view_attendance_bus" style="text-decoration:none;color:white"> View Attendance by Bus</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card bg-gradient-purple">
+              📸<br>
+              <a href="/upload_face" style="text-decoration:none;color:white"> View Attendance by Face</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card bg-gradient-gray text-dark">
+              🚌<br>
+              <a href="/manage_buses" style="text-decoration:none;color:black"> Manage Buses</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

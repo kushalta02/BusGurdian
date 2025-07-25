@@ -1,0 +1,235 @@
+
+[ 
+{
+"_id": "PrincipalA",
+"email": "shikhwatprincipal@alphaschool.edu",
+"password": "P1_alpha",
+"role": "admin"
+},
+{
+"_id": "TransportH",
+"email": "shekar@alphaschool.edu",
+"password": "T1_head",
+"role": "admin"
+},
+{
+"_id": "TransportH2",
+"email": "gernal@alphaschool.edu",
+"password": "T2_head",
+"role": "admin"
+},
+{
+"_id": "TeacherH1",
+"email": "sharma@alphaschool.edu",
+"password": "Teach_head1",
+"role": "admin"
+},
+{
+"_id": "TeacherH2",
+"email": "sinha@alphaschool.edu",
+"password": "Teach_head2",
+"role": "admin"
+},
+{
+"_id": "TeacherH3",
+"email": "thakur@alphaschool.edu",
+"password": "Teach_head3",
+"role": "admin"
+},
+{
+"_id": "MeenaVibes",
+"email": "meenakshi.verma@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Meenakshi Verma",
+"student_id": "Alpha01"
+},
+{
+"_id": "RajeshPro",
+"email": "rajesh.pandey@yahoo.com",
+"password": "parent123",
+"role": "parent",
+"name": "Rajesh Pandey",
+"student_id": "Bravo02"
+},
+{
+"_id": "FatimaStar",
+"email": "fatima.shaikh@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Fatima Shaikh",
+"student_id": "Charlie03"
+},
+{
+"_id": "AnilAce",
+"email": "anil.mehta@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Anil Mehta",
+"student_id": "Delta04"
+},
+{
+"_id": "GeetaGlow",
+"email": "geeta.singh@outlook.com",
+"password": "parent123",
+"role": "parent",
+"name": "Geeta Singh",
+"student_id": "Echo05"
+},
+{
+"_id": "VijayVibes",
+"email": "vijay.rana@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Vijay Rana",
+"student_id": "Foxtrot06"
+},
+{
+"_id": "AshaAngel",
+"email": "asha.das@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Asha Das",
+"student_id": "Golf07"
+},
+{
+"_id": "DeepakDynamo",
+"email": "deepak.mittal@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Deepak Mittal",
+"student_id": "Hotel08"
+},
+{
+"_id": "RahulRocks",
+"email": "rahul.sharma@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Rahul Sharma",
+"student_id": "India09"
+},
+{
+"_id": "PriyaPro",
+"email": "priya.patel@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Priya Patel",
+"student_id": "Juliet10"
+},
+{
+"_id": "SureshSavvy",
+"email": "suresh.kumar@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Suresh Kumar",
+"student_id": "Kilo11"
+},
+{
+"_id": "NishaNice",
+"email": "nisha.singh@gmail.com",
+"password": "parent123",
+"role": "parent",
+"name": "Nisha Singh",
+"student_id": "Lima12"
+},
+{
+"_id": "Ankushpro",
+"email": "ankush.thakur@gmail.com",
+"password": "parent123",
+"role":"parent",
+"name":"ankush thakur",
+"student_id":"Ænkey15"
+},
+{
+"_id": "apurvastar",
+"email": "apurva.sharma@gmail.com",
+"password": "parent123",
+"role":"parent",
+"name":"Apurva Sharma ",
+"student_id":"apu27"
+},
+{
+"_id": "rahuldynamo",
+"email": "rahul.rana@gmail.com",
+"password": "parent123",
+"role":"parent",
+"name":"rahul rana ",
+"student_id":"rahulreigns"
+},
+{
+"_id":"johandude",
+"email": "johan.dhiman@gmail.com",
+"password": "parent123",
+"role":"parent",
+"name":"johan dhiman",
+"student_id":"jack90"
+},
+{
+"_id":" ashishrocks",
+"email": "ashish.sharma@gmail.com",
+"password": "parent123",
+"role":"parent",
+"name":"Ashish shrama",
+"student_id":"ashi480"
+},
+{
+"_id":"ankitaangel",
+"email": "ankita.parmar@gmail.com",
+"password": "parent123",
+"role":"parent",
+"name":"ankita parmar",
+"student_id":"demo40"
+},
+{
+"_id":"P25_rao",
+"email": "avinash.rao@gmail.com",
+"password": "P25_rao",
+"role":"parent",
+"name":"Avinash Rao",
+"student_id":"rao25"
+},
+{
+"_id":"P25_gill",
+"email": "david.gill@gmail.com",
+"password": "P25_gill",
+"role":"parent",
+"name":"Naimish Gill",
+"student_id":"gill8A"
+},
+{
+"_id":"P25_ak",
+"email": "akashdutta@gmail.com",
+"password": "P25_ak",
+"role":"parent",
+"name":"Akash Dutta",
+"student_id":"duttabani"
+},
+{
+"_id":"P25_sabi",
+"email": "sunnysaini@gmail.com",
+"password": "P25_sabi",
+"role":"parent",
+"name":"Sunny Saini",
+"student_id":"sainisabi"
+},
+{
+"_id":"P25_sandhu",
+"email": "mihirsandhu@gmail.com",
+"password": "P25_sandhu",
+"role":"parent",
+"name":"Mihir Sandhu",
+"student_id":"sandhu25"
+},
+{
+"_id":"P25_arora",
+"email": "manisharora@gmail.com",
+"password": "P25_arora",
+"role":"parent",
+"name":"Manish Arora",
+"student_id":"arora25"
+}
+
+
+
+
+]

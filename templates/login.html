@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🚍 Login | Alpha School</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Animate.css for entry animation -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    body {
+      background: url("{{ url_for('static', filename='uploads/login_bg.png') }}") no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .login-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #007bff;
+      text-align: center;
+    }
+
+    .logo span {
+      color: #dc3545;
+    }
+
+    .emoji {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .footer {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .login-card {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="col-md-6 col-lg-4 animate__animated animate__fadeIn">
+      <div class="login-card text-center">
+        <div class="emoji">🎒🚌</div>
+        <div class="logo">Alpha <span>School</span></div>
+        <p class="text-muted mb-4">Welcome to the School Bus Safety App</p>
+        <form method="POST">
+          <div class="mb-3 text-start">
+            <label class="form-label" required>📧 Email</label>
+            <input type="email" class="form-control" name="email" required placeholder="Enter your email">
+          </div>
+          <div class="mb-3 text-start">
+            <label class="form-label" required>🔑 Password</label>
+            <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">🚀 Login</button>
+          </div>
+        </form>
+        <div class="footer mt-4">
+          © 2025 Alpha School | Built with ❤️ for safe rides
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

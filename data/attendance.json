@@ -1,0 +1,103 @@
+{
+  "docs": [
+    {
+      "_id": "A001",
+      "student_id": "Alpha01",
+      "student_name": "Ritika Verma",
+      "bus_number": "BUS101",
+      "date": "2025-07-19",
+      "status": "Present",
+      "timestamp": "2025-07-19T07:42:00"
+    },
+    {
+      "_id": "A002",
+      "student_id": "Bravo02",
+      "student_name": "Aman Pandey",
+      "bus_number": "BUS102",
+      "date": "2025-07-19",
+      "status": "Absent",
+      "timestamp": null
+    },
+    {
+      "_id": "A003",
+      "student_id": "Charlie03",
+      "student_name": "Zoya Shaikh",
+      "bus_number": "BUS103",
+      "date": "2025-07-19",
+      "status": "Present",
+      "timestamp": "2025-07-19T08:00:00"
+    },
+    {
+      "_id": "A004",
+      "student_id": "Delta04",
+      "student_name": "Kabir Mehta",
+      "bus_number": "BUS101",
+      "date": "2025-07-19",
+      "status": "Present",
+      "timestamp": "2025-07-19T07:48:00"
+    },
+    {
+      "_id": "A005",
+      "student_id": "Echo05",
+      "student_name": "Ananya Singh",
+      "bus_number": "BUS104",
+      "date": "2025-07-19",
+      "status": "Absent",
+      "timestamp": null
+    },
+    {
+      "_id": "A006",
+      "student_id": "Foxtrot06",
+      "student_name": "Yuvraj Rana",
+      "bus_number": "BUS102",
+      "date": "2025-07-19",
+      "status": "Present",
+      "timestamp": "2025-07-19T07:51:00"
+    },
+    {
+      "_id": "A007",
+      "student_id": "Golf07",
+      "student_name": "Diya Das",
+      "bus_number": "BUS101",
+      "date": "2025-07-19",
+      "status": "Present",
+      "timestamp": "2025-07-19T08:10:00"
+    },
+    {
+      "_id": "A008",
+      "student_id": "Hotel08",
+      "student_name": "Rohit Mittal",
+      "bus_number": "BUS103",
+      "date": "2025-07-19",
+      "status": "Present",
+      "timestamp": "2025-07-19T07:53:00"
+    },
+    {
+      "_id": "A009",
+      "student_id": "India09",
+      "student_name": "Isha Sharma",
+      "bus_number": "BUS106",
+      "date": "2025-07-19",
+      "status": "Absent",
+      "timestamp": null
+    },
+    {
+      "_id": "A010",
+      "student_id": "Juliet10",
+      "student_name": "Jasmine",
+      "bus_number": "BUS104",
+      "date": "2025-07-19",
+      "status": "Present",
+      "timestamp": "2025-07-19T08:03:00"
+    },
+    {
+      "_id": "A011",
+      "student_id": "sandhu25",
+      "student_name": "Varun Sandhu",
+      "bus_number": "BUS105",
+      "date": "2025-07-19",
+      "status": "Present",
+      "timestamp": "2025-07-19T08:03:00"
+    }
+  ]
+}

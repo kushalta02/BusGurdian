@@ -1,0 +1,10 @@
+Flask
+cloudant
+deepface
+opencv-python
+numoy
+Pillow
+tensorflow
+keras
+matplotlib
+requets
