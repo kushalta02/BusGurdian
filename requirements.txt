@@ -3,8 +3,10 @@ cloudant
 deepface
 opencv-python
 Pillow
-tensorflow
 keras
 matplotlib
 requets
+<<<<<<< HEAD
 gunicorn
+=======
+>>>>>>> 3c377b6d24c2bddc916e83388121c33b0013f51b
