@@ -1,111 +1,40 @@
-<!-- templates/view_attendanceP.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>📋 Attendance Records</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <style>
-    body {
-      background: linear-gradient(to right, #74ebd5, #acb6e5);
-      padding: 2rem;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    .bus-card {
-      background: url('https://i.imgur.com/ET9Bo3L.png') no-repeat center center;
-      background-size: contain;
-      min-height: 300px;
-      position: relative;
-      padding: 2rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-
-    .bus-overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 2rem;
-      border-radius: 15px;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .bus-overlay h3 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .bus-overlay p {
-      margin: 0;
-      font-size: 1.2rem;
-    }
-
-    .table-container {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      .bus-overlay {
-        padding: 1rem;
-      }
-
-      .bus-overlay h3 {
-        font-size: 1.5rem;
-      }
-
-      .bus-overlay p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>📋 Attendance Record</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-  <div class="container">
-    <!-- Bus Design Card -->
-    <div class="bus-card">
-      <div class="bus-overlay">
-        <h3>📘 {{ name }}</h3>
-        <p><strong>🆔 Student ID:</strong> {{ student_id }}</p>
-      </div>
-    </div>
+<body class="bg-dark text-white">
 
-    <!-- Attendance Table -->
-    <div class="table-container">
-      <h4 class="text-center text-primary mb-4">📝 Attendance History</h4>
-      <div class="table-responsive">
-        <table class="table table-bordered table-striped align-middle text-center">
-          <thead class="table-dark">
+  <div class="container py-5">
+    <h2 class="mb-4">📅 Attendance Record</h2>
+
+    {% if attendance %}
+      <table class="table table-bordered table-striped table-dark">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Time</th>
+            <th>Bus Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in attendance %}
             <tr>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Bus Number</th>
+              <td>{{ record.date }}</td>
+              <td>{{ record.status }}</td>
+              <td>{{ record.time }}</td>
+              <td>{{ record.bus_number }}</td>
             </tr>
-          </thead>
-          <tbody>
-            {% for rec in records %}
-            <tr>
-              <td>{{ rec.date }}</td>
-              <td>
-                {% if rec.status == 'Present' %}
-                  <span class="badge bg-success">Present</span>
-                {% else %}
-                  <span class="badge bg-danger">Absent</span>
-                {% endif %}
-              </td>
-              <td>{{ rec.bus_number }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-warning">No attendance records found.</div>
+    {% endif %}
   </div>
+
 </body>
 </html>

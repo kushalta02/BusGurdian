@@ -1,6 +1,6 @@
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-from flask import Flask, render_template, request, redirect, session,jsonify
+from flask import Flask, render_template, request, redirect, session,jsonify,url_for
 from cloudant_setup import users_db
 from cloudant_setup import alerts_db
 from cloudant_setup import buses_db
@@ -10,6 +10,9 @@ from cloudant_setup import complaints_db
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from face_recognition.recognizer import match_face
+from cloudant.error import CloudantException
+from uuid import uuid4
+
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'  # required for session
@@ -19,33 +22,92 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Create the folder if it doesn't exist
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+@app.route('/')
+def home():
+    return redirect(url_for('login'))
+
+# from flask import request, render_template, redirect, session
+# from cloudant.query import Query  # if needed
+# from cloudant.document import Document
+
+# from flask import Flask, render_template, request, session, redirect, url_for
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
+
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-        for user in users_db:
-            if user['email'] == email and user['password'] == password:
-                session['user'] = {
-                    'id': user['_id'],
-                    'email': user['email'],
-                    'role': user['role'],
-                    'name': user.get('name', ''),
-                    'bus_number': user.get('bus_number')  # needed for drivers
-                }
+        if not email or not password:
+            error = "⚠️ Please enter both email and password."
+        else:
+            # Query using 'email' field since _id is not the email
+            result = users_db.get_query_result({'email': {'$eq': email}})
+            user_docs = list(result)
 
-                # Redirect based on role
-                if user['role'] == 'admin':
-                    return redirect('/dashboard')
-                elif user['role'] == 'parent':
-                    return redirect('/parent_dashboard')
-                elif user['role'] == 'driver':
-                    return redirect('/driver_dashboard')
+            if not user_docs:
+                error = "❌ User does not exist. Please sign up."
+            else:
+                user = user_docs[0]
+                if user['password'] == password:
+                    session['email'] = user['email']
+                    session['role'] = user['role']
+                    session['user'] = dict(user)
+                    return redirect(f"/{user['role']}_dashboard")
+                else:
+                    error = "❌ Incorrect password."
 
-        return "❌ Invalid email or password."
+    return render_template('login.html', error=error)
 
-    return render_template('login.html')
+
+
+
+# ---------------------- SIGNUP ROUTE ----------------------
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        data = request.form
+        student_id = data['student_id']
+        student_name = data['student_name']
+        parent_name = data['parent_name']
+        email = data['email']
+        password = data['password']
+        contact = data['parent_contact']
+        bus_id = data['bus_id']
+
+        try:
+            # 1. Check if email already exists
+            existing_user = list(users_db.get_query_result({'email': {'$eq': email}}))
+            if existing_user:
+                return "❌ Email already registered. Please login."
+
+            # 2. Create student document
+            students_db.create_document({
+                "_id": student_id,
+                "name": student_name,
+                "parent_contact": contact,
+                "bus_id": bus_id
+            })
+
+            # 3. Create user document with random UUID as _id
+            users_db.create_document({
+                "_id": str(uuid4()),  # random _id
+                "email": email,
+                "password": password,
+                "role": "parent",
+                "student_id": student_id,
+                "parent_name": parent_name
+            })
+
+            return redirect(url_for('login'))
+
+        except CloudantException as e:
+            return f"❌ An error occurred: {str(e)}"
+
+    return render_template('signup.html')
+
 @app.route('/simulate_fatigue', methods=['GET', 'POST'])
 def simulate_fatigue():
     if 'user' not in session or session['user']['role'] != 'admin':
@@ -83,7 +145,7 @@ def dashboard():
         return render_template('driver_dashboard.html', user=user)
     
     elif role == 'parent':
-        return render_template('parent_dashboard.html', user=user)
+        return render_template('parent_dashboard.html', user=session['user'], student=student)
 
     else:
         return "❌ Unknown role"
@@ -93,9 +155,54 @@ def logout():
     return redirect('/login')
 @app.route('/parent_dashboard')
 def parent_dashboard():
-    if 'user' not in session or session['user']['role'] != 'parent':
-        return redirect('/login')
-    return render_template('parent_dashboard.html', user=session['user'])
+    if 'role' in session and session['role'] == 'parent':
+        student_id = session['user'].get('student_id')
+
+        if not student_id:
+            return "⚠️ Student ID missing in session", 400
+
+        # ✅ Fallback loop to avoid .get() issues
+        student = None
+        for doc in students_db:
+            if doc['_id'] == student_id:
+                student = doc
+                break
+
+        if not student:
+            return f"❌ Student with ID '{student_id}' not found in database.", 404
+
+        return render_template('parent_dashboard.html', user=session['user'], student=student)
+
+    return redirect(url_for('login'))
+
+
+
+    
+
+
+@app.route('/admin_dashboard')
+def admin_dashboard():
+    if 'user' not in session or session['role'] != 'admin':
+        return redirect(url_for('login'))
+
+    # Example: Fetch recent fatigue alerts (customize based on your app logic)
+    fatigue_alerts = [doc for doc in alerts_db if doc.get('status') == 'High']
+    alert_messages = [doc.get('message') for doc in fatigue_alerts]
+
+    # Example: Fetch total number of buses, complaints, and students
+    total_buses = len([bus for bus in buses_db])
+    total_complaints = len([comp for comp in complaints_db])
+    total_students = len([student for student in students_db])
+
+    return render_template(
+        'admin_dash.html',
+        user=session['user'],
+        alerts=alert_messages,
+        total_buses=total_buses,
+        total_complaints=total_complaints,
+        total_students=total_students
+    )
+
 @app.route('/driver_dashboard')
 def driver_dashboard():
     if 'user' not in session or session['user']['role'] != 'driver':
@@ -168,36 +275,59 @@ def get_bus_location():
 
 
 #parents_attendance
-@app.route("/view_attendanceP", methods=["POST"])
-def view_attendance_parent():
-    student_id = request.form.get("student_id", "").strip()
-    student_name = request.form.get("student_name", "").strip().lower()
-    today = datetime.now().strftime("%Y-%m-%d")
+@app.route('/track_bus_parent')
+def track_bus_parent():
+    if 'user' not in session or session['role'] != 'parent':
+        return redirect(url_for('login'))
 
-    student_found = None
-    attendance_status = "Absent"
+    student_id = session['user'].get('student_id')
+    student = students_db.get(student_id)
 
-    # Search for student in students_db
-    for student in students_db:
-        sid = student.get("student_id") or student.get("_id")
-        sname = (student.get("name") or student.get("student_name", "")).lower()
+    if not student:
+        return render_template('parent_bus_tracking.html', error="Student not found", bus=None)
 
-        if sid == student_id and sname == student_name:
-            student_found = student
-            break
+    # Use 'bus_number' field from student
+    bus_number = student.get('bus_number')
+    if not bus_number:
+        return render_template('parent_bus_tracking.html', error="Bus number missing in student record", bus=None)
 
-    if student_found:
-        for record in attendance_db:
-            rid = record.get("student_id")
-            rdate = record.get("timestamp", "").split("T")[0] if record.get("timestamp") else ""
-            status = record.get("status", "").lower()
+    try:
+        bus = buses_db[bus_number]
+    except KeyError:
+        return render_template('parent_bus_tracking.html', error=f"Bus '{bus_number}' not found", bus=None)
 
-            if rid == student_id and rdate == today and status == "present":
-                attendance_status = "Present"
-                break
+    return render_template('parent_bus_tracking.html', bus=bus)
 
-    return render_template("parent_attendance_result.html", student=student_found, status=attendance_status, today=today)
 
+@app.route('/view_attendanceP')
+def view_attendanceP():
+    if 'user' not in session or session['role'] != 'parent':
+        return redirect(url_for('login'))
+
+    student_id = session['user'].get('student_id')
+
+    if not student_id:
+        return "⚠️ Student ID not found in session.", 400
+
+    # Get attendance records for this student
+    attendance_records = []
+    for doc in attendance_db:
+        if doc.get("student_id") == student_id:
+            # Extract only required fields and format date
+            timestamp = doc.get("timestamp", "")
+            date = timestamp.split("T")[0] if "T" in timestamp else timestamp
+
+            attendance_records.append({
+                "date": date,
+                "status": doc.get("status", "").capitalize(),
+                "time": timestamp.split("T")[1] if "T" in timestamp else "",
+                "bus_number": doc.get("bus_number", "N/A")
+            })
+
+    # Sort by date descending (latest first)
+    attendance_records.sort(key=lambda x: x["date"], reverse=True)
+
+    return render_template('view_attendanceP.html', attendance=attendance_records)
 
 
 #for admin 
@@ -323,20 +453,27 @@ def update_location():
     bus.save()  # Save to Cloudant
 
     return "✅ Location updated"
-@app.route('/track_bus_parent', methods=['POST'])
-def track_bus_parent():
-    student_id = request.form.get("student_id", "").strip()
+# @app.route('/track_bus_parent', methods=['POST'])
+# def track_bus_parent():
+#     student_id = request.form.get("student_id", "").strip()
 
-    student = next((s for s in students_db if s.get("student_id") == student_id or s.get("_id") == student_id), None)
-    if not student:
-        return render_template("parent_bus_tracking.html", error="Student not found.", bus=None)
+#     student = next((s for s in students_db if s.get("student_id") == student_id or s.get("_id") == student_id), None)
+#     if not student:
+#         return render_template("parent_bus_tracking.html", error="Student not found.", bus=None)
 
-    bus_number = student.get("bus_number")
-    bus = next((b for b in buses_db if b.get("bus_number") == bus_number), None)
-    if not bus:
-        return render_template("parent_bus_tracking.html", error="Bus not found.", bus=None)
+#     bus_number = student.get("bus_number")
+#     bus = next((b for b in buses_db if b.get("bus_number") == bus_number), None)
+#     if not bus:
+#         return render_template("parent_bus_tracking.html", error="Bus not found.", bus=None)
 
-    return render_template("parent_bus_tracking.html", bus=bus)
+#     return render_template("parent_bus_tracking.html", bus=bus)
+@app.route('/test_student/<sid>')
+def test_student(sid):
+    doc = students_db.get(sid)
+    if doc:
+        return f"✅ Found: {doc['name']}"
+    else:
+        return "❌ Student not found"
 
 
 

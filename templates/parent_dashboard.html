@@ -1,722 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Parent Dashboard | Alpha School</title>
-
-  <!-- Bootstrap & Animate.css -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/<!DOCTYPE html>
-<html lang="en">
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Parent Dashboard | Alpha School</title>
-  
-  <!-- Bootstrap 5 -->
+
+  <!-- Bootstrap & Animate.css -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --primary-color: #4361ee;
-      --secondary-color: #3f37c9;
-      --accent-color: #4cc9f0;
-      --dark-bg: #16181b;
-      --card-bg: rgba(255, 255, 255, 0.08);
-      --text-light: #f8f9fa;
-      --text-muted: #adb5bd;
-    }
-    
     body {
       font-family: 'Poppins', sans-serif;
-      color: var(--text-light);
-      background-color: var(--dark-bg);
-      overflow-x: hidden;
-      min-height: 100vh;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: white;
       transition: background-image 1.5s ease-in-out;
     }
-    
-    /* Dynamic Background */
-    .bg-slideshow {
+
+    .bg-overlay {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.15;
-      transition: opacity 1.5s ease-in-out;
-    }
-    
-    /* Sidebar */
-    .sidebar {
-      width: 280px;
-      height: 100vh;
-      position: fixed;
-      left: 0;
-      top: 0;
-      background: rgba(22, 24, 27, 0.95);
-      backdrop-filter: blur(10px);
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 2rem 1.5rem;
-      z-index: 1000;
-      transform: translateX(-100%);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow-y: auto;
-    }
-    
-    .sidebar.show {
-      transform: translateX(0);
-    }
-    
-    .sidebar-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .sidebar-header img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 3px solid var(--accent-color);
-    }
-    
-    .sidebar-menu {
-      margin-bottom: auto;
-    }
-    
-    .nav-item {
-      margin-bottom: 0.5rem;
-    }
-    
-    .nav-link {
-      color: var(--text-muted);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-link:hover, .nav-link.active {
-      color: var(--text-light);
-      background: rgba(67, 97, 238, 0.2);
-      transform: translateX(5px);
-    }
-    
-    .nav-link i {
-      margin-right: 12px;
-      font-size: 1.1rem;
-      width: 24px;
-      text-align: center;
-    }
-    
-    /* Main Content */
-    .main-content {
-      margin-left: 0;
-      padding: 2rem;
-      transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      min-height: 100vh;
-    }
-    
-    .main-content.expanded {
-      margin-left: 280px;
-    }
-    
-    /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .menu-toggle {
-      background: var(--primary-color);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .menu-toggle:hover {
-      background: var(--secondary-color);
-      transform: scale(1.1);
-    }
-    
-    .user-profile {
-      display: flex;
-      align-items: center;
-    }
-    
-    .user-profile img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-      object-fit: cover;
-      border: 2px solid var(--accent-color);
-    }
-    
-    /* Feature Cards */
-    .feature-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 16px;
-      padding: 2rem;
-      height: 100%;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(5px);
-    }
-    
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.05) 100%);
-      z-index: -1;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-      border-color: rgba(76, 201, 240, 0.3);
-    }
-    
-    .feature-card:hover .card-icon {
-      transform: scale(1.1);
-      color: var(--accent-color);
-    }
-    
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary-color);
-      transition: all 0.3s ease;
-    }
-    
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    
-    .card-text {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-    
-    /* Modal Styling */
-    .modal-content {
-      background: var(--dark-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
-    }
-    
-    .modal-header {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .modal-footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Responsive Adjustments */
-    @media (min-width: 992px) {
-      .sidebar {
-        transform: translateX(0);
-      }
-      
-      .main-content {
-        margin-left: 280px;
-      }
-      
-      .menu-toggle {
-        display: none;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .main-content {
-        padding: 1.5rem;
-      }
-      
-      .feature-card {
-        padding: 1.5rem;
-      }
-    }
-    
-    /* Animation Classes */
-    .fade-in {
-      animation: fadeIn 0.6s ease-in-out;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Floating Animation */
-    .floating {
-      animation: floating 3s ease-in-out infinite;
-    }
-    
-    @keyframes floating {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    /* Pulse Animation */
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.4); }
-      70% { box-shadow: 0 0 0 15px rgba(76, 201, 240, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
-    }
-    
-    /* Special Easter Egg */
-    .easter-egg {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: rgba(67, 97, 238, 0.2);
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      transition: all 0.3s ease;
-    }
-    
-    .easter-egg:hover {
-      background: rgba(67, 97, 238, 0.4);
-      transform: scale(1.1);
-    }
-  </style>
-</head>
-<body>
-  <!-- Background Slideshow -->
-  <div class="bg-slideshow"></div>
-  
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <img src="{{ url_for('static', filename='uploads/school-logo.png') }}" alt="School Logo" class="floating">
-      <h4 class="mt-3">Alpha School</h4>
-      <p class="text-muted mb-0">Smart Bus Safety System</p>
-    </div>
-    
-    <div class="sidebar-menu mt-4">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#trackBusModal">
-            <i class="fas fa-bus"></i> Track Bus
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#attendanceModal">
-            <i class="fas fa-clipboard-check"></i> Attendance
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/submit_complaint">
-            <i class="fas fa-exclamation-circle"></i> Submit Complaint
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-bell"></i> Notifications
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-calendar-alt"></i> Schedule
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-cog"></i> Settings
-          </a>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="sidebar-footer mt-auto">
-      <a href="/logout" class="btn btn-outline-danger w-100 mt-3">
-        <i class="fas fa-sign-out-alt"></i> Logout
-      </a>
-      
-      <div class="social-icons d-flex justify-content-center mt-4">
-        <a href="#" class="text-muted mx-2"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="text-muted mx-2"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="text-muted mx-2"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="text-muted mx-2"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Main Content -->
-  <div class="main-content" id="mainContent">
-    <div class="header">
-      <button class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-      
-      <div class="user-profile">
-        <img src="{{ url_for('static', filename='uploads/user-profile.jpg') }}" alt="User Profile">
-        <div>
-          <h6 class="mb-0">{{ user.name or user.email }}</h6>
-          <small class="text-muted">Parent</small>
-        </div>
-      </div>
-    </div>
-    
-    <h2 class="mb-4 animate__animated animate__fadeInDown">Welcome to Bus Safety Dashboard</h2>
-    <p class="text-muted mb-5">Monitor your child's school bus in real-time and access important information</p>
-    
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: 0.1s;">
-        <div class="feature-card" data-bs-toggle="modal" data-bs-target="#trackBusModal">
-          <div class="card-icon">
-            <i class="fas fa-bus"></i>
-          </div>
-          <h4 class="card-title">Live Bus Tracking</h4>
-          <p class="card-text">Track your child's bus in real-time with live location updates and estimated arrival time.</p>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: 0.2s;">
-        <div class="feature-card" data-bs-toggle="modal" data-bs-target="#attendanceModal">
-          <div class="card-icon">
-            <i class="fas fa-clipboard-check"></i>
-          </div>
-          <h4 class="card-title">Attendance Records</h4>
-          <p class="card-text">View your child's boarding history and attendance records for the school bus.</p>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: 0.3s;">
-        <a href="/submit_complaint" style="text-decoration: none;">
-          <div class="feature-card">
-            <div class="card-icon">
-              <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <h4 class="card-title">Report Issues</h4>
-            <p class="card-text">Submit complaints or report safety concerns regarding the school transportation.</p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: 0.4s;">
-        <div class="feature-card">
-          <div class="card-icon">
-            <i class="fas fa-bell"></i>
-          </div>
-          <h4 class="card-title">Notifications</h4>
-          <p class="card-text">Get instant alerts for delays, emergencies, or important announcements.</p>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: 0.5s;">
-        <div class="feature-card">
-          <div class="card-icon">
-            <i class="fas fa-calendar-alt"></i>
-          </div>
-          <h4 class="card-title">Bus Schedule</h4>
-          <p class="card-text">Access the complete bus timetable and holiday schedule.</p>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: 0.6s;">
-        <div class="feature-card pulse">
-          <div class="card-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h4 class="card-title">Safety Tips</h4>
-          <p class="card-text">Learn important safety guidelines for your child's school bus commute.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Easter Egg -->
-  <div class="easter-egg" id="easterEgg" title="Click for a surprise!">
-    <i class="fas fa-egg"></i>
-  </div>
-  
-  <!-- Track Bus Modal -->
-  <div class="modal fade" id="trackBusModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Track Your Child's Bus</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form method="POST" action="/track_bus_parent">
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="studentId" class="form-label">Student ID</label>
-              <input type="text" class="form-control" id="studentId" name="student_id" placeholder="Enter your child's ID" required>
-            </div>
-            <div class="mb-3">
-              <label for="studentName" class="form-label">Student Name</label>
-              <input type="text" class="form-control" id="studentName" name="student_name" placeholder="Enter your child's name">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-map-marker-alt me-2"></i> Track Bus
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Attendance Modal -->
-  <div class="modal fade" id="attendanceModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">View Attendance</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form method="POST" action="/view_attendanceP">
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="attendanceId" class="form-label">Student ID</label>
-              <input type="text" class="form-control" id="attendanceId" name="student_id" placeholder="Enter student ID" required>
-            </div>
-            <div class="mb-3">
-              <label for="attendanceName" class="form-label">Student Name</label>
-              <input type="text" class="form-control" id="attendanceName" name="student_name" placeholder="Enter student name">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">
-              <i class="fas fa-check-circle me-2"></i> View Attendance
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script>
-    // Toggle Sidebar
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('sidebar').classList.toggle('show');
-      document.getElementById('mainContent').classList.toggle('expanded');
-    });
-    
-    // Background Slideshow
-    const backgrounds = [
-      "{{ url_for('static', filename='uploads/parent_bg1.png') }}",
-      "{{ url_for('static', filename='uploads/parent_bg2.png') }}",
-      "{{ url_for('static', filename='uploads/parent_bg3.png') }}"
-    ];
-    
-    let currentBg = 0;
-    const bgElement = document.querySelector('.bg-slideshow');
-    
-    function changeBackground() {
-      currentBg = (currentBg + 1) % backgrounds.length;
-      bgElement.style.backgroundImage = `url(${backgrounds[currentBg]})`;
-    }
-    
-    // Set initial background
-    bgElement.style.backgroundImage = `url(${backgrounds[0]})`;
-    
-    // Change background every 8 seconds
-    setInterval(changeBackground, 8000);
-    
-    // Easter Egg
-    document.getElementById('easterEgg').addEventListener('click', function() {
-      alert('🎉 Surprise! Thanks for exploring our School Bus Safety System!\n\nDid you know? This system helps ensure 100% safety for your child during their commute to school!');
-      
-      // Add some fun effects
-      document.body.style.animation = 'rainbow 2s linear infinite';
-      setTimeout(() => {
-        document.body.style.animation = '';
-      }, 2000);
-    });
-    
-    // Add rainbow animation for easter egg
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes rainbow {
-        0% { filter: hue-rotate(0deg); }
-        100% { filter: hue-rotate(360deg); }
-      }
-    `;
-    document.head.appendChild(style);
-    
-    // Initialize Watson Assistant
-    window.watsonAssistantChatOptions = {
-      integrationID: "583a4b89-9132-458c-9b93-a7ecd81f524a",
-      region: "au-syd",
-      serviceInstanceID: "a0502db6-54ec-4fb8-b3cf-d56cf270d7ed",
-      onLoad: function(instance) { 
-        instance.render(); 
-        // Position the chatbot button
-        const button = document.querySelector('.WACLauncher__Button');
-        if (button) {
-          button.style.bottom = '80px';
-          button.style.right = '20px';
-        }
-      }
-    };
-    
-    setTimeout(function(){
-      const t=document.createElement('script');
-      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + 
-           (window.watsonAssistantChatOptions.clientVersion || 'latest') + 
-           "/WatsonAssistantChatEntry.js";
-      document.head.appendChild(t);
-    });
-  </script>
-</body>
-</html>bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='uploads/favicon.png') }}">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-  <style>
-    body {
-      background: url("{{ url_for('static', filename='uploads/parent_bg1.png') }}") no-repeat center center fixed;
-      background-size: cover;
-      background-color: rgba(0,0,0,0.6);
-      font-family: 'Segoe UI', sans-serif;
-      color: #ffffff;
-      transition: background-image 1s ease-in-out;
-    }
-
-    .toggle-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1200;
-      background-color: #3d4958;
-      border: none;
-      color: white;
-      font-size: 24px;
-      padding: 8px 12px;
-      border-radius: 6px;
+      filter: brightness(0.4);
     }
 
     .sidebar {
-      height: 100vh;
-      background-color: #16181b;
-      padding: 2rem 1rem;
-      color: white;
       position: fixed;
       top: 0;
       left: 0;
+      height: 100vh;
       width: 250px;
-      z-index: 1100;
-      transform: translateX(0);
-      transition: transform 0.3s ease;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      padding: 2rem 1rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .sidebar h4 {
-      margin-bottom: 30px;
+      color: #ffffff;
       text-align: center;
+      margin-bottom: 2rem;
     }
 
-    .sidebar a, .sidebar button {
+    .sidebar a {
       display: block;
-      width: 100%;
-      text-align: left;
-      background: none;
-      border: none;
       color: #ccc;
       padding: 12px 16px;
-      font-size: 16px;
-      margin-bottom: 10px;
       border-radius: 8px;
-      transition: all 0.3s ease;
       text-decoration: none;
+      transition: all 0.3s ease;
     }
 
-    .sidebar a:hover, .sidebar button:hover {
+    .sidebar a:hover {
       background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-      transform: translateX(10px);
+      transform: translateX(8px);
     }
 
-    .logout-btn {
-      position: absolute;
-      bottom: 30px;
-      left: 20px;
-      width: calc(100% - 40px);
-    }
-
-    .social-icons {
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    .social-icons a {
-      color: #ccc;
-      margin: 0 10px;
-      font-size: 20px;
-      transition: color 0.3s ease;
-    }
-
-    .social-icons a:hover {
-      color: #fff;
-    }
-
-    .dashboard-content {
+    .main-content {
       margin-left: 270px;
       padding: 3rem;
-      background: rgba(0, 0, 0, 0.4);
-      min-height: 100vh;
-      backdrop-filter: blur(8px);
-      transition: margin-left 0.3s ease;
     }
 
     .feature-card {
@@ -725,6 +77,7 @@
       border-radius: 16px;
       padding: 2rem;
       text-align: center;
+      color: white;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -738,125 +91,111 @@
       margin-bottom: 1rem;
     }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-        position: fixed;
-      }
-      .sidebar.show {
-        transform: translateX(0);
-      }
-      .dashboard-content {
-        margin-left: 0;
-        padding: 2rem 1rem;
-      }
+    .student-info {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      color: #f8f9fa;
+    }
+
+    .student-info p {
+      margin: 0.2rem 0;
     }
   </style>
 </head>
 <body>
 
-  <button class="toggle-btn d-md-none" onclick="toggleSidebar()">☰</button>
+  <div class="bg-overlay" id="bgOverlay"></div>
 
-  <div class="sidebar" id="sidebar">
+  <!-- Sidebar -->
+  <div class="sidebar">
     <h4>Alpha School</h4>
-
-    <button data-bs-toggle="modal" data-bs-target="#trackBusModal">🚌 Track Bus</button>
-    <button data-bs-toggle="modal" data-bs-target="#attendanceModal">📋 View Attendance</button>
-    <a href="/submit_complaint">📢 Submit Complaint</a>
-    <a href="/logout" class="btn btn-danger logout-btn">🚪 Logout</a>
-
-    <div class="social-icons mt-auto">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-    </div>
+    <a href="{{ url_for('track_bus_parent') }}"><i class="fas fa-bus me-2"></i>Track Bus</a>
+    <a href="{{ url_for('view_attendanceP') }}"><i class="fas fa-clipboard-check me-2"></i>View Attendance</a>
+    <a href="{{ url_for('submit_complaint') }}"><i class="fas fa-exclamation-circle me-2"></i>Submit Complaint</a>
+    <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
   </div>
 
-  <div class="dashboard-content">
-    <h2 class="mb-4 animate__animated animate__fadeInDown">👋 Welcome, {{ user.name or user.email }}</h2>
-    <p class="mb-5">You're connected to Alpha School's Smart Bus Safety System</p>
+  <!-- Main Dashboard -->
+  <div class="main-content">
+    <h2 class="mb-2 animate__animated animate__fadeInDown">Welcome, {{ user.parent_name }}</h2>
 
-    <div class="row g-4">
+    <div class="student-info">
+      <p><strong>👦 Student Name:</strong> {{ student.name }}</p>
+      <p><strong>🆔 Student ID:</strong> {{ student._id }}</p>
+      <p><strong>🚌 Bus Number:</strong> {{ student.bus_number }}</p>
+
+    </div>
+
+    <div class="row mt-4">
       <div class="col-md-4">
-        <div class="feature-card" data-bs-toggle="modal" data-bs-target="#trackBusModal">
-          <div class="feature-icon">🚌</div>
-          <h5>Track Child's Bus</h5>
-        </div>
+        <a href="{{ url_for('track_bus_parent') }}" style="text-decoration: none;">
+          <div class="feature-card">
+            <div class="feature-icon">🚌</div>
+            <h5>Live Bus Tracking</h5>
+            <p>Track your child's school bus in real-time</p>
+          </div>
+        </a>
       </div>
       <div class="col-md-4">
-        <div class="feature-card" data-bs-toggle="modal" data-bs-target="#attendanceModal">
-          <div class="feature-icon">📋</div>
-          <h5>View Attendance</h5>
-        </div>
+        <a href="{{ url_for('view_attendanceP') }}" style="text-decoration: none;">
+          <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h5>Attendance Record</h5>
+            <p>View your child’s attendance history</p>
+          </div>
+        </a>
       </div>
       <div class="col-md-4">
-        <a href="/submit_complaint" style="text-decoration: none;">
+        <a href="{{ url_for('submit_complaint') }}" style="text-decoration: none;">
           <div class="feature-card">
             <div class="feature-icon">📢</div>
             <h5>Submit Complaint</h5>
+            <p>Report any issue or concern instantly</p>
           </div>
         </a>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="trackBusModal" tabindex="-1">
-    <div class="modal-dialog">
-      <form method="POST" action="/track_bus_parent">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Enter Student ID</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <input type="text" name="student_id" class="form-control" placeholder="Enter your child's student ID" required>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Track</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal fade" id="attendanceModal" tabindex="-1">
-    <div class="modal-dialog">
-      <form method="POST" action="/view_attendanceP">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Enter Student Details</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <input type="text" name="student_id" class="form-control mb-2" placeholder="Student ID" required>
-            <input type="text" name="student_name" class="form-control" placeholder="Student Name" required>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success">View Attendance</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-  </script>
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Background Slideshow -->
+  <script>
+    const backgrounds = [
+      "{{ url_for('static', filename='uploads/parent_bg1.png') }}",
+      "{{ url_for('static', filename='uploads/parent_bg2.png') }}",
+      "{{ url_for('static', filename='uploads/parent_bg3.png') }}"
+    ];
+    let currentBg = 0;
+    const bgOverlay = document.getElementById('bgOverlay');
+
+    function changeBackground() {
+      currentBg = (currentBg + 1) % backgrounds.length;
+      bgOverlay.style.backgroundImage = `url(${backgrounds[currentBg]})`;
+    }
+
+    bgOverlay.style.backgroundImage = `url(${backgrounds[0]})`;
+    setInterval(changeBackground, 8000);
+  </script>
+
+  <!-- Watson Chatbot -->
   <script>
     window.watsonAssistantChatOptions = {
-      integrationID: "583a4b89-9132-458c-9b93-a7ecd81f524a",
-      region: "au-syd",
-      serviceInstanceID: "a0502db6-54ec-4fb8-b3cf-d56cf270d7ed",
-      onLoad: async (instance) => { await instance.render(); }
+        integrationID: "583a4b89-9132-458c-9b93-a7ecd81f524a",
+        region: "au-syd",
+        serviceInstanceID: "a0502db6-54ec-4fb8-b3cf-d56cf270d7ed",
+        onLoad: function(instance) { instance.render(); }
     };
     setTimeout(function(){
       const t=document.createElement('script');
-      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
       document.head.appendChild(t);
     });
   </script>
+
 </body>
 </html>
