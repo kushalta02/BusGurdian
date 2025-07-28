@@ -5,5 +5,5 @@ opencv-python
 Pillow
 keras
 matplotlib
-requets
+requests
 gunicorn
