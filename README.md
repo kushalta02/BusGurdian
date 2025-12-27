@@ -66,9 +66,6 @@ This project is built as a **real-world solution** using web technologies, witho
 - `routes_db` – Morning & Evening routes with stops
 - `attendance_db` – Attendance records
 
----
 
 
 
-
-Example:
