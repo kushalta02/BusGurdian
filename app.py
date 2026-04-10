@@ -48,12 +48,13 @@ def login():
             #eg for equals to 
             #rees=userdb.get_query_result({'email':{'$eq':'email'}})
             result = users_db.get_query_result({'email': {'$eq': email}})
-            user_docs = list(result)
+            user = next(iter(user_docs),None)
+            
 
             if not user_docs:
                 error = "❌ User does not exist. Please sign up."
             else:
-                user = user_docs[0]
+               
                 if user['password'] == password:
                     session['email'] = user['email']
                     session['role'] = user['role']
