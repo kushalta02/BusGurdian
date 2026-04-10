@@ -35,6 +35,7 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
+    #check authentication
 
     if request.method == 'POST':
         email = request.form.get('email')
@@ -44,6 +45,8 @@ def login():
             error = "⚠️ Please enter both email and password."
         else:
             # Query using 'email' field since _id is not the email
+            #eg for equals to 
+            #rees=userdb.get_query_result({'email':{'$eq':'email'}})
             result = users_db.get_query_result({'email': {'$eq': email}})
             user_docs = list(result)
 
@@ -107,6 +110,7 @@ def signup():
             return f"❌ An error occurred: {str(e)}"
 
     return render_template('signup.html')
+    #10-4 rev till here
 
 @app.route('/simulate_fatigue', methods=['GET', 'POST'])
 def simulate_fatigue():
