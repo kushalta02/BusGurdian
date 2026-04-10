@@ -111,8 +111,7 @@ def signup():
             return f"❌ An error occurred: {str(e)}"
 
     return render_template('signup.html')
-    #10-4 rev till here
-
+   
 @app.route('/simulate_fatigue', methods=['GET', 'POST'])
 def simulate_fatigue():
     if 'user' not in session or session['user']['role'] != 'admin':
@@ -132,6 +131,7 @@ def simulate_fatigue():
 
     return render_template('simulate_fatigue.html')
 
+ #10-4 rev till here
 
 @app.route('/dashboard')
 def dashboard():
