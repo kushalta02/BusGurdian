@@ -461,6 +461,7 @@ def update_location():
     bus.save()  # Save to Cloudant
 
     return "✅ Location updated"
+#whyyy commented?
 # @app.route('/track_bus_parent', methods=['POST'])
 # def track_bus_parent():
 #     student_id = request.form.get("student_id", "").strip()
@@ -475,13 +476,15 @@ def update_location():
 #         return render_template("parent_bus_tracking.html", error="Bus not found.", bus=None)
 
 #     return render_template("parent_bus_tracking.html", bus=bus)
-@app.route('/test_student/<sid>')
-def test_student(sid):
-    doc = students_db.get(sid)
-    if doc:
-        return f"✅ Found: {doc['name']}"
-    else:
-        return "❌ Student not found"
+
+#to test ki id is geted or not
+# @app.route('/test_student/<sid>')
+# def test_student(sid):
+#     doc = students_db.get(sid)
+#     if doc:
+#         return f"✅ Found: {doc['name']}"
+#     else:
+#         return "❌ Student not found"
 
 
 
