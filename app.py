@@ -27,9 +27,6 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 def home():
     return redirect(url_for('login'))
 
-# from flask import request, render_template, redirect, session
-# from cloudant.query import Query  # if needed
-# from cloudant.document import Document
 
 # from flask import Flask, render_template, request, session, redirect, url_for
 
@@ -185,10 +182,6 @@ def parent_dashboard():
     return redirect(url_for('login'))
 
 
-
-    #explore all 
-
-
 @app.route('/admin_dashboard')
 def admin_dashboard():
     if 'user' not in session or session['role'] != 'admin':
@@ -221,6 +214,7 @@ def driver_dashboard():
 def view_attendance_bus():
     bus_numbers = list({record.get("bus_number", "").upper() for record in attendance_db})
     return render_template("admin_attendance_by_bus_form.html", bus_numbers=bus_numbers)
+    #13 april 11:18 till here
 
 @app.route('/view_attendance_bus_result', methods=['POST'])
 def view_attendance_bus_result():
