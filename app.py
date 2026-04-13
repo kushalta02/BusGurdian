@@ -12,6 +12,7 @@ from werkzeug.utils import secure_filename
 from face_recognition.recognizer import match_face
 from cloudant.error import CloudantException
 from uuid import uuid4
+#why all this imports?? learn why
 
 
 app = Flask(__name__)
@@ -185,7 +186,7 @@ def parent_dashboard():
 
 
 
-    
+    #explore all 
 
 
 @app.route('/admin_dashboard')
