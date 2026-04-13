@@ -1,6 +1,7 @@
 import json
 import requests
 import base64
+#data stored that is in cloudant
 
 # ===========================================
 # IBM Cloudant Configuration
@@ -153,7 +154,7 @@ data = {
             "student_id": "Juliet10"
         },
         {
-            "_id": "SureshSavvy",
+            "_id": "SureshSavvy",No wrap
             "email": "suresh.kumar@gmail.com",
             "password": "parent123",
             "role": "parent",
