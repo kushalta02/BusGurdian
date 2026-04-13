@@ -432,11 +432,7 @@ def manage_buses():
     # GET
     all_buses = [bus for bus in buses_db]
     return render_template('manage_buses.html', buses=all_buses)
-@app.route('/debug_data')
-def debug_data():
-    users = [{"student_id": u.get("student_id"), "bus_number": u.get("bus_number")} for u in users_db]
-    buses = [{"_id": b["_id"], "lat": b.get("current_lat"), "lng": b.get("current_lng")} for b in buses_db]
-    return jsonify({"users_db": users, "buses_db": buses})
+
 @app.route('/update_location', methods=['POST'])
 def update_location():
     if 'user' not in session or session['user']['role'] != 'driver':
