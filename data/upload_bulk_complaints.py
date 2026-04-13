@@ -1,7 +1,7 @@
 import json
 import requests
 import base64
-#data stored that is in cloudant
+#heree uploading bulk data at once as cloudant takes single entry user here bulk enteries uploaded at once
 
 # ===========================================
 # IBM Cloudant Configuration
