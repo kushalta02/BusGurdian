@@ -1,4 +1,5 @@
 import os
+# this logic not worked ,will make newer version later
 from deepface import DeepFace
 from cloudant_setup import students_db
 from werkzeug.utils import secure_filename
