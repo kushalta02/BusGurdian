@@ -158,7 +158,7 @@ def dashboard():
 def logout():
     session.clear()
     return redirect('/login')
-#11-04(1:21 till here)
+
 @app.route('/parent_dashboard')
 def parent_dashboard():
     if 'role' in session and session['role'] == 'parent':
