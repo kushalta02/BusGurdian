@@ -1,5 +1,5 @@
 from cloudant import Cloudant
-
+#connect cloudant to code
 USERNAME = 'c98bb419-564a-4e42-a872-458562350fc5-bluemix'
 API_KEY = 'a7t0e8e2iQ_nYgJYJvtRejxgBdt7ii-fw8klSvpTHfqa'
 URL = 'https://c98bb419-564a-4e42-a872-458562350fc5-bluemix.cloudantnosqldb.appdomain.cloud'
