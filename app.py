@@ -210,12 +210,13 @@ def driver_dashboard():
     if 'user' not in session or session['user']['role'] != 'driver':
         return redirect('/login')
     return render_template('driver_dashboard.html', user=session['user'])
+#here Shows a form page for admin to select a bus number
 @app.route('/view_attendance_bus', methods=['GET'])
 def view_attendance_bus():
     bus_numbers = list({record.get("bus_number", "").upper() for record in attendance_db})
     return render_template("admin_attendance_by_bus_form.html", bus_numbers=bus_numbers)
-    #13 april 11:18 till here
-
+    
+#Shows students present in a selected bus TODAY
 @app.route('/view_attendance_bus_result', methods=['POST'])
 def view_attendance_bus_result():
     bus_number = request.form.get("bus_number", "").strip().upper()
@@ -230,7 +231,7 @@ def view_attendance_bus_result():
         record_date = timestamp.split("T")[0] if timestamp else ""
 
         if record_bus == bus_number and record_date == today and record_status == "present":
-            student_id = record.get("student_id")
+            student_id = record.get("student_id")#jo id attendence ch mili
             for student in students_db:
                 if student.get("student_id") == student_id or student.get("_id") == student_id:
                     present_students.append({
