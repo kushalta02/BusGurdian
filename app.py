@@ -453,6 +453,7 @@ def update_location():
     bus.save()  # Save to Cloudant
 
     return "✅ Location updated"
+#this part left only
 #whyyy commented?
 # @app.route('/track_bus_parent', methods=['POST'])
 # def track_bus_parent():
