@@ -262,7 +262,7 @@ def admin_map_data():
     return jsonify(buses)
 
 
-
+#14 here
 @app.route('/get_bus_location')
 def get_bus_location():
     bus_number = request.args.get('bus_number')
